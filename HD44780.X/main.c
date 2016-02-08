@@ -1,3 +1,10 @@
+/*DB7 - RB7
+  DB6 - RB6
+  DB5 - RB5
+  DB4 - RB4
+  ENABLE - RB3
+  RS - RB2*/
+  
 #include <stdio.h>
 #include <stdlib.h>
 #include <xc.h>
