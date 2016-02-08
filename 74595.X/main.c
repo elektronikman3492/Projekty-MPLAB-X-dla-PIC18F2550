@@ -1,3 +1,7 @@
+/*DATA (DS) - RB7
+  CLK (SH_CP) - RA0
+  LATCH (ST_CP) - RB6*/
+  
 #include <stdio.h>
 #include <stdlib.h>
 #include <xc.h>
