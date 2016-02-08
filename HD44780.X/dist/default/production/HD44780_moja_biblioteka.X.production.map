@@ -1,0 +1,737 @@
+Microchip MPLAB XC8 Compiler V1.33 ()
+
+Linker command line:
+
+--edf=C:\Program Files (x86)\Microchip\xc8\v1.33\dat\en_msgs.txt -cs \
+  -h+dist/default/production\HD44780_moja_biblioteka.X.production.sym \
+  --cmf=dist/default/production\HD44780_moja_biblioteka.X.production.cmf -z \
+  -Q18F2550 -oC:\Users\Jedrzej\AppData\Local\Temp\s3ak.6 \
+  -Mdist/default/production/HD44780_moja_biblioteka.X.production.map -E1 \
+  -ver=XC8 -ASTACK=0A7h-07ffh -pstack=STACK -ACODE=00h-07FFFh \
+  -ACONST=00h-07FFFh -ASMALLCONST=0800h-08FFhx120 \
+  -AMEDIUMCONST=0800h-07FFFh -ACOMRAM=01h-05Fh -AABS1=00h-07FFh \
+  -ABIGRAM=01h-07FFh -ARAM=060h-0FFh,0100h-01FFhx7 -ABANK0=060h-0FFh \
+  -ABANK1=0100h-01FFh -ABANK2=0200h-02FFh -ABANK3=0300h-03FFh \
+  -ABANK4=0400h-04FFh -ABANK5=0500h-05FFh -ABANK6=0600h-06FFh \
+  -ABANK7=0700h-07FFh -ASFR=0F60h-0FFFh \
+  -preset_vec=00h,intcode,intcodelo,powerup,init,end_init -pramtop=0800h \
+  -psmallconst=SMALLCONST -pmediumconst=MEDIUMCONST -pconst=CONST \
+  -AFARRAM=00h-00h -ACONFIG=0300000h-030000Dh -pconfig=CONFIG \
+  -AIDLOC=0200000h-0200007h -pidloc=IDLOC -AEEDATA=0F00000h-0F000FFh \
+  -peeprom_data=EEDATA \
+  -prdata=COMRAM,nvrram=COMRAM,nvbit=COMRAM,rbss=COMRAM,rbit=COMRAM \
+  -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
+  -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
+  -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE \
+  C:\Users\Jedrzej\AppData\Local\Temp\s3ak.obj \
+  dist/default/production\HD44780_moja_biblioteka.X.production.obj 
+
+Object code version is 3.11
+
+Machine type is 18F2550
+
+Call graph: (short form)
+
+
+
+
+                Name                               Link     Load   Length Selector   Space Scale
+C:\Users\Jedrzej\AppData\Local\Temp\s3ak.obj
+                end_init                              0        0        4        0       0
+                idloc                            200000   200000        8   200000       0
+                config                           300000   300000        E   300000       0
+dist/default/production\HD44780_moja_biblioteka.X.production.obj
+                smallconst                          800      800       1E      400       0
+                text7                               F4A      F4A       36      40F       0
+                text6                               CEA      CEA      108      40F       0
+                text5                               F80      F80        E      40F       0
+                text4                               BE0      BE0      10A      40F       0
+                text3                               DF2      DF2       84      40F       0
+                text2                               EC4      EC4       4E      40F       0
+                text1                               81E      81E      1E2      40F       0
+                text0                               A00      A00      1E0      40F       0
+                cstackCOMRAM                          1        1       51        1       1
+                cstackBANK0                          98       98        F       60       1
+                dataBANK0                            60       60       38       60       1
+                dataCOMRAM                           52       52        8        1       1
+                cinit                               E76      E76       4E      40F       0
+                idataBANK0                          F12      F12       38      40F       0
+                idataCOMRAM                         F8E      F8E        8      40F       0
+
+TOTAL           Name                               Link     Load   Length     Space
+        CLASS   STACK          
+
+        CLASS   CODE           
+                end_init                              0        0        4         0
+                text7                               F4A      F4A       36         0
+                text6                               CEA      CEA      108         0
+                text5                               F80      F80        E         0
+                text4                               BE0      BE0      10A         0
+                text3                               DF2      DF2       84         0
+                text2                               EC4      EC4       4E         0
+                text1                               81E      81E      1E2         0
+                text0                               A00      A00      1E0         0
+                cinit                               E76      E76       4E         0
+                idataBANK0                          F12      F12       38         0
+                idataCOMRAM                         F8E      F8E        8         0
+
+        CLASS   CONST          
+
+        CLASS   SMALLCONST     
+                smallconst                          800      800       1E         0
+
+        CLASS   MEDIUMCONST    
+
+        CLASS   COMRAM         
+                cstackCOMRAM                          1        1       51         1
+                dataCOMRAM                           52       52        8         1
+
+        CLASS   ABS1           
+
+        CLASS   BIGRAM         
+
+        CLASS   RAM            
+
+        CLASS   BANK0          
+                cstackBANK0                          98       98        F         1
+                dataBANK0                            60       60       38         1
+
+        CLASS   BANK1          
+
+        CLASS   BANK2          
+
+        CLASS   BANK3          
+
+        CLASS   BANK4          
+
+        CLASS   BANK5          
+
+        CLASS   BANK6          
+
+        CLASS   BANK7          
+
+        CLASS   SFR            
+
+        CLASS   FARRAM         
+
+        CLASS   CONFIG         
+                config                           300000   300000        E         0
+
+        CLASS   IDLOC          
+                idloc                            200000   200000        8         0
+
+        CLASS   EEDATA         
+
+
+
+SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
+
+                reset_vec                      000000  000004  000004         0       0  CODE    
+                cstackCOMRAM                   000001  000059  00005A         1       1  COMRAM  
+                dataBANK0                      000060  000047  0000A7        60       1  BANK0   
+                smallconst                     000800  00001E  00081E       400       0  SMALLCON
+                text1                          00081E  000778  000F96       40F       0  CODE    
+                idloc                          200000  000008  200008    200000       0  IDLOC   
+                config                         300000  00000E  30000E    300000       0  CONFIG  
+
+
+UNUSED ADDRESS RANGES
+
+        Name                Unused          Largest block    Delta
+        BANK0            0000A7-0000FF               59
+        BANK1            000100-0001FF              100
+        BANK2            000200-0002FF              100
+        BANK3            000300-0003FF              100
+        BANK4            000400-0004FF              100
+        BANK5            000500-0005FF              100
+        BANK6            000600-0006FF              100
+        BANK7            000700-0007FF              100
+        BIGRAM           00005A-00005F                6
+                         0000A7-0007FF              759
+        CODE             000004-0007FF              7FC
+                         000F96-007FFF             706A
+        COMRAM           00005A-00005F                6
+        CONST            000004-0007FF              7FC
+                         000F96-007FFF             706A
+        EEDATA           F00000-F000FF              100
+        MEDIUMCONST      000F96-007FFF             706A
+        RAM              0000A7-0007FF              100
+        SFR              000F60-000FFF               A0
+        SMALLCONST       000F96-007FFF              100
+        STACK            0000A7-0007FF              759
+
+                                  Symbol Table
+
+LcdCmd@command               cstackCOMRAM 000003
+LcdData@data                 cstackCOMRAM 000003
+LcdText@i                    cstackCOMRAM 00000B
+LcdText@text                 cstackCOMRAM 000005
+LcdText@x                    cstackCOMRAM 00000A
+LcdText@y                    cstackCOMRAM 000004
+SetCursor@i                  cstackCOMRAM 000009
+SetCursor@x                  cstackCOMRAM 000008
+SetCursor@y                  cstackCOMRAM 000004
+_Init_lcd                    text7        000F4A
+_LATBbits                    (abs)        000F8A
+_LcdClr                      text5        000F80
+_LcdCmd                      text6        000CEA
+_LcdData                     text4        000BE0
+_LcdText                     text3        000DF2
+_SetCursor                   text2        000EC4
+_TRISBbits                   (abs)        000F93
+__CFG_BOR$OFF                (abs)        000000
+__CFG_CPUDIV$OSC1_PLL2       (abs)        000000
+__CFG_FOSC$HSPLL_HS          (abs)        000000
+__CFG_LVP$OFF                (abs)        000000
+__CFG_MCLRE$ON               (abs)        000000
+__CFG_PBADEN$OFF             (abs)        000000
+__CFG_PLLDIV$5               (abs)        000000
+__CFG_PWRT$ON                (abs)        000000
+__CFG_USBDIV$2               (abs)        000000
+__CFG_VREGEN$ON              (abs)        000000
+__CFG_WDT$OFF                (abs)        000000
+__HRAM                       (abs)        000000
+__Habs1                      abs1         000000
+__Hbank0                     bank0        000000
+__Hbank1                     bank1        000000
+__Hbank2                     bank2        000000
+__Hbank3                     bank3        000000
+__Hbank4                     bank4        000000
+__Hbank5                     bank5        000000
+__Hbank6                     bank6        000000
+__Hbank7                     bank7        000000
+__Hbigbss                    bigbss       000000
+__Hbigdata                   bigdata      000000
+__Hbigram                    bigram       000000
+__Hbss                       bss          000000
+__Hcinit                     cinit        000000
+__Hclrtext                   clrtext      000000
+__Hcomram                    comram       000000
+__Hconfig                    config       30000E
+__Hconst                     const        000000
+__HcstackBANK0               cstackBANK0  000000
+__HcstackCOMRAM              cstackCOMRAM 000000
+__Hdata                      data         000000
+__HdataBANK0                 dataBANK0    000000
+__HdataCOMRAM                dataCOMRAM   000000
+__Heeprom_data               eeprom_data  000000
+__Hend_init                  end_init     000004
+__Hfarbss                    farbss       000000
+__Hfardata                   fardata      000000
+__Hibigdata                  ibigdata     000000
+__Hidata                     idata        000000
+__HidataBANK0                idataBANK0   000000
+__HidataCOMRAM               idataCOMRAM  000000
+__Hidloc                     idloc        200008
+__Hifardata                  ifardata     000000
+__Hinit                      init         000000
+__Hintcode                   intcode      000000
+__Hintcode_body              intcode_body 000000
+__Hintcodelo                 intcodelo    000000
+__Hintentry                  intentry     000000
+__Hintret                    intret       000000
+__Hintsave_regs              intsave_regs 000000
+__Hirdata                    irdata       000000
+__Hmediumconst               mediumconst  000000
+__HnvFARRAM                  nvFARRAM     000000
+__Hnvbit                     nvbit        000000
+__Hnvrram                    nvrram       000000
+__Hparam                     rparam       000000
+__Hpowerup                   powerup      000000
+__Hram                       ram          000000
+__Hramtop                    ramtop       000800
+__Hrbit                      rbit         000000
+__Hrbss                      rbss         000000
+__Hrdata                     rdata        000000
+__Hreset_vec                 reset_vec    000000
+__Hrparam                    rparam       000000
+__Hsfr                       sfr          000000
+__Hsmallconst                smallconst   00081E
+__Hspace_0                   (abs)        30000E
+__Hspace_1                   (abs)        0000A7
+__Hspace_2                   (abs)        000000
+__Hstack                     stack        000000
+__Hstruct                    struct       000000
+__Htemp                      temp         000000
+__Htext                      text         000000
+__Htext0                     text0        000000
+__Htext1                     text1        000000
+__Htext2                     text2        000000
+__Htext3                     text3        000000
+__Htext4                     text4        000000
+__Htext5                     text5        000000
+__Htext6                     text6        000000
+__Htext7                     text7        000000
+__LRAM                       (abs)        000001
+__Labs1                      abs1         000000
+__Lbank0                     bank0        000000
+__Lbank1                     bank1        000000
+__Lbank2                     bank2        000000
+__Lbank3                     bank3        000000
+__Lbank4                     bank4        000000
+__Lbank5                     bank5        000000
+__Lbank6                     bank6        000000
+__Lbank7                     bank7        000000
+__Lbigbss                    bigbss       000000
+__Lbigdata                   bigdata      000000
+__Lbigram                    bigram       000000
+__Lbss                       bss          000000
+__Lcinit                     cinit        000000
+__Lclrtext                   clrtext      000000
+__Lcomram                    comram       000000
+__Lconfig                    config       300000
+__Lconst                     const        000000
+__LcstackBANK0               cstackBANK0  000000
+__LcstackCOMRAM              cstackCOMRAM 000000
+__Ldata                      data         000000
+__LdataBANK0                 dataBANK0    000000
+__LdataCOMRAM                dataCOMRAM   000000
+__Leeprom_data               eeprom_data  000000
+__Lend_init                  end_init     000000
+__Lfarbss                    farbss       000000
+__Lfardata                   fardata      000000
+__Libigdata                  ibigdata     000000
+__Lidata                     idata        000000
+__LidataBANK0                idataBANK0   000000
+__LidataCOMRAM               idataCOMRAM  000000
+__Lidloc                     idloc        200000
+__Lifardata                  ifardata     000000
+__Linit                      init         000000
+__Lintcode                   intcode      000000
+__Lintcode_body              intcode_body 000000
+__Lintcodelo                 intcodelo    000000
+__Lintentry                  intentry     000000
+__Lintret                    intret       000000
+__Lintsave_regs              intsave_regs 000000
+__Lirdata                    irdata       000000
+__Lmediumconst               mediumconst  000000
+__LnvFARRAM                  nvFARRAM     000000
+__Lnvbit                     nvbit        000000
+__Lnvrram                    nvrram       000000
+__Lparam                     rparam       000000
+__Lpowerup                   powerup      000000
+__Lram                       ram          000000
+__Lramtop                    ramtop       000800
+__Lrbit                      rbit         000000
+__Lrbss                      rbss         000000
+__Lrdata                     rdata        000000
+__Lreset_vec                 reset_vec    000000
+__Lrparam                    rparam       000000
+__Lsfr                       sfr          000000
+__Lsmallconst                smallconst   000800
+__Lspace_0                   (abs)        000000
+__Lspace_1                   (abs)        000000
+__Lspace_2                   (abs)        000000
+__Lstack                     stack        000000
+__Lstruct                    struct       000000
+__Ltemp                      temp         000000
+__Ltext                      text         000000
+__Ltext0                     text0        000000
+__Ltext1                     text1        000000
+__Ltext2                     text2        000000
+__Ltext3                     text3        000000
+__Ltext4                     text4        000000
+__Ltext5                     text5        000000
+__Ltext6                     text6        000000
+__Ltext7                     text7        000000
+__S0                         (abs)        30000E
+__S1                         (abs)        0000A7
+__S2                         (abs)        000000
+___inthi_sp                  stack        000000
+___intlo_sp                  stack        000000
+___sp                        stack        000000
+__accesstop                  (abs)        000060
+__activetblptr               (abs)        000001
+__end_of_Init_lcd            text7        000F80
+__end_of_LcdClr              text5        000F8E
+__end_of_LcdCmd              text6        000DF2
+__end_of_LcdData             text4        000CEA
+__end_of_LcdText             text3        000E76
+__end_of_SetCursor           text2        000F12
+__end_of__initialization     cinit        000EB6
+__end_of__stringdata         smallconst   00081C
+__end_of_main                text0        000BE0
+__end_of_znaki_pl_i_stopien  text1        000A00
+__initialization             cinit        000E76
+__mediumconst                mediumconst  000000
+__pcinit                     cinit        000E76
+__pcstackBANK0               cstackBANK0  000098
+__pcstackCOMRAM              cstackCOMRAM 000001
+__pdataBANK0                 dataBANK0    000060
+__pdataCOMRAM                dataCOMRAM   000052
+__pidataBANK0                idataBANK0   000F12
+__pidataCOMRAM               idataCOMRAM  000F8E
+__psmallconst                smallconst   000800
+__ptext0                     text0        000A00
+__ptext1                     text1        00081E
+__ptext2                     text2        000EC4
+__ptext3                     text3        000DF2
+__ptext4                     text4        000BE0
+__ptext5                     text5        000F80
+__ptext6                     text6        000CEA
+__ptext7                     text7        000F4A
+__ramtop                     ramtop       000800
+__size_of_Init_lcd           (abs)        000000
+__size_of_LcdClr             (abs)        000000
+__size_of_LcdCmd             (abs)        000000
+__size_of_LcdData            (abs)        000000
+__size_of_LcdText            (abs)        000000
+__size_of_SetCursor          (abs)        000000
+__size_of_main               (abs)        000000
+__size_of_znaki_pl_i_stopien (abs)        000000
+__smallconst                 smallconst   000800
+__stringdata                 smallconst   000801
+_main                        text0        000A00
+_znaki_pl_i_stopien          text1        00081E
+end_of_initialization        cinit        000EB6
+intlevel0                    text         000000
+intlevel1                    text         000000
+intlevel2                    text         000000
+intlevel3                    text         000000
+main@i                       cstackBANK0  000098
+main@i_207                   cstackBANK0  0000A6
+main@i_209                   cstackBANK0  00009A
+main@i_213                   cstackBANK0  00009C
+main@i_215                   cstackBANK0  00009E
+main@i_217                   cstackBANK0  0000A0
+main@i_218                   cstackBANK0  0000A2
+main@j                       cstackBANK0  0000A4
+main@k                       cstackBANK0  0000A5
+stackhi                      (abs)        0007FF
+stacklo                      (abs)        0000A7
+start                        init         000000
+start_initialization         cinit        000E76
+znaki_pl_i_stopien@F4986     dataCOMRAM   000052
+znaki_pl_i_stopien@F4988     dataBANK0    000060
+znaki_pl_i_stopien@F4990     dataBANK0    000068
+znaki_pl_i_stopien@F4992     dataBANK0    000070
+znaki_pl_i_stopien@F4994     dataBANK0    000078
+znaki_pl_i_stopien@F4996     dataBANK0    000080
+znaki_pl_i_stopien@F4998     dataBANK0    000088
+znaki_pl_i_stopien@F5000     dataBANK0    000090
+znaki_pl_i_stopien@data1     cstackCOMRAM 000004
+znaki_pl_i_stopien@data2     cstackCOMRAM 00000C
+znaki_pl_i_stopien@data3     cstackCOMRAM 000014
+znaki_pl_i_stopien@data4     cstackCOMRAM 00001C
+znaki_pl_i_stopien@data5     cstackCOMRAM 000024
+znaki_pl_i_stopien@data6     cstackCOMRAM 00002C
+znaki_pl_i_stopien@data7     cstackCOMRAM 000034
+znaki_pl_i_stopien@data8     cstackCOMRAM 00003C
+znaki_pl_i_stopien@i         cstackCOMRAM 000044
+znaki_pl_i_stopien@i_193     cstackCOMRAM 000045
+znaki_pl_i_stopien@i_194     cstackCOMRAM 000046
+znaki_pl_i_stopien@i_195     cstackCOMRAM 000047
+znaki_pl_i_stopien@i_196     cstackCOMRAM 000048
+znaki_pl_i_stopien@i_197     cstackCOMRAM 000049
+znaki_pl_i_stopien@i_198     cstackCOMRAM 00004A
+znaki_pl_i_stopien@i_199     cstackCOMRAM 00004B
+
+
+FUNCTION INFORMATION:
+
+ *************** function _main *****************
+ Defined at:
+		line 8 in file "main.c"
+ Parameters:    Size  Location     Type
+  argc            2   75[COMRAM] int 
+  argv            3   77[COMRAM] PTR PTR unsigned char 
+ Auto vars:     Size  Location     Type
+  i               2    8[BANK0 ] int 
+  i               2    6[BANK0 ] int 
+  i               2   10[BANK0 ] int 
+  k               1   13[BANK0 ] unsigned char 
+  j               1   12[BANK0 ] unsigned char 
+  i               2    4[BANK0 ] int 
+  i               2    2[BANK0 ] int 
+  i               1   14[BANK0 ] unsigned char 
+  i               2    0[BANK0 ] int 
+ Return value:  Size  Location     Type
+                  2   75[COMRAM] int 
+ Registers used:
+		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         5       0       0       0       0       0       0       0       0
+      Locals:         0      15       0       0       0       0       0       0       0
+      Temps:          1       0       0       0       0       0       0       0       0
+      Totals:         6      15       0       0       0       0       0       0       0
+Total ram usage:       21 bytes
+ Hardware stack levels required when called:    2
+ This function calls:
+		_Init_lcd
+		_LcdClr
+		_LcdCmd
+		_LcdData
+		_LcdText
+		_SetCursor
+		_znaki_pl_i_stopien
+ This function is called by:
+		Startup code after reset
+ This function uses a non-reentrant model
+
+
+ *************** function _znaki_pl_i_stopien *****************
+ Defined at:
+		line 155 in file "hd44780.h"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  i               1   74[COMRAM] unsigned char 
+  i               1   73[COMRAM] unsigned char 
+  i               1   72[COMRAM] unsigned char 
+  i               1   71[COMRAM] unsigned char 
+  i               1   70[COMRAM] unsigned char 
+  i               1   69[COMRAM] unsigned char 
+  i               1   68[COMRAM] unsigned char 
+  i               1   67[COMRAM] unsigned char 
+  data8           8   59[COMRAM] unsigned char [8]
+  data7           8   51[COMRAM] unsigned char [8]
+  data6           8   43[COMRAM] unsigned char [8]
+  data5           8   35[COMRAM] unsigned char [8]
+  data4           8   27[COMRAM] unsigned char [8]
+  data3           8   19[COMRAM] unsigned char [8]
+  data2           8   11[COMRAM] unsigned char [8]
+  data1           8    3[COMRAM] unsigned char [8]
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:        72       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:        72       0       0       0       0       0       0       0       0
+Total ram usage:       72 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		_LcdCmd
+		_LcdData
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _SetCursor *****************
+ Defined at:
+		line 141 in file "hd44780.h"
+ Parameters:    Size  Location     Type
+  x               1    wreg     unsigned char 
+  y               1    3[COMRAM] unsigned char 
+ Auto vars:     Size  Location     Type
+  x               1    7[COMRAM] unsigned char 
+  i               2    8[COMRAM] int 
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         1       0       0       0       0       0       0       0       0
+      Locals:         3       0       0       0       0       0       0       0       0
+      Temps:          3       0       0       0       0       0       0       0       0
+      Totals:         7       0       0       0       0       0       0       0       0
+Total ram usage:        7 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		_LcdCmd
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _LcdText *****************
+ Defined at:
+		line 116 in file "hd44780.h"
+ Parameters:    Size  Location     Type
+  x               1    wreg     unsigned char 
+  y               1    3[COMRAM] unsigned char 
+  text            2    4[COMRAM] PTR const unsigned char 
+		 -> STR_2(12), STR_1(15), 
+ Auto vars:     Size  Location     Type
+  x               1    9[COMRAM] unsigned char 
+  i               2   10[COMRAM] int 
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		wreg, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         3       0       0       0       0       0       0       0       0
+      Locals:         3       0       0       0       0       0       0       0       0
+      Temps:          3       0       0       0       0       0       0       0       0
+      Totals:         9       0       0       0       0       0       0       0       0
+Total ram usage:        9 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		_LcdCmd
+		_LcdData
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _LcdData *****************
+ Defined at:
+		line 97 in file "hd44780.h"
+ Parameters:    Size  Location     Type
+  data            1    wreg     const unsigned char 
+ Auto vars:     Size  Location     Type
+  data            1    2[COMRAM] const unsigned char 
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          2       0       0       0       0       0       0       0       0
+      Totals:         3       0       0       0       0       0       0       0       0
+Total ram usage:        3 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_LcdText
+		_znaki_pl_i_stopien
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _LcdClr *****************
+ Defined at:
+		line 136 in file "hd44780.h"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		_LcdCmd
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _LcdCmd *****************
+ Defined at:
+		line 78 in file "hd44780.h"
+ Parameters:    Size  Location     Type
+  command         1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  command         1    2[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          2       0       0       0       0       0       0       0       0
+      Totals:         3       0       0       0       0       0       0       0       0
+Total ram usage:        3 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_LcdText
+		_LcdClr
+		_SetCursor
+		_znaki_pl_i_stopien
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _Init_lcd *****************
+ Defined at:
+		line 45 in file "hd44780.h"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		wreg
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          1       0       0       0       0       0       0       0       0
+      Totals:         1       0       0       0       0       0       0       0       0
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+
+MODULE INFORMATION
+
+Module		Function		Class		Link	Load	Size
+shared
+		__stringdata   		SMALLCONST     	0801	0000	27
+		__initializatio		CODE           	0E76	0000	64
+
+shared estimated size: 91
+
+hd44780.h
+		_LcdCmd        		CODE           	0CEA	0000	264
+		_Init_lcd      		CODE           	0F4A	0000	54
+		_SetCursor     		CODE           	0EC4	0000	78
+		_LcdData       		CODE           	0BE0	0000	266
+		_znaki_pl_i_sto		CODE           	081E	0000	482
+		_LcdClr        		CODE           	0F80	0000	14
+		_LcdText       		CODE           	0DF2	0000	132
+
+hd44780.h estimated size: 1290
+
+main.c
+		_main          		CODE           	0A00	0000	480
+
+main.c estimated size: 480
+

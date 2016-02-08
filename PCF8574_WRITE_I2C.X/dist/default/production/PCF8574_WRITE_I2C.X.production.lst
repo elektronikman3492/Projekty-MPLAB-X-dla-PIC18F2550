@@ -1,0 +1,1003 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V1.33 build 59893 
+                                                                                               Sun Feb 07 21:40:29 2016
+
+Microchip Technology Omniscient Code Generator (Lite mode) build 59893
+     1                           	processor	18F2550
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	lm
+     5                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     7                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1
+     8                           	psect	text1,global,reloc=2,class=CODE,delta=1
+     9                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    11                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1
+    12                           	psect	rparam,global,class=COMRAM,space=1,delta=1
+    13  0000                     _PIR1bits	set	3998
+    14  0000                     _SSPADD	set	4040
+    15  0000                     _SSPBUF	set	4041
+    16  0000                     _SSPCON1	set	4038
+    17  0000                     _SSPCON1bits	set	4038
+    18  0000                     _SSPCON2	set	4037
+    19  0000                     _SSPCON2bits	set	4037
+    20  0000                     _SSPSTAT	set	4039
+    21  0000                     _SSPSTATbits	set	4039
+    22  0000                     _TRISBbits	set	3987
+    23                           
+    24 ;;
+    25 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+    26 ;;
+    27 ;; *************** function _main *****************
+    28 ;; Defined at:
+    29 ;;		line 7 in file "main.c"
+    30 ;; Parameters:    Size  Location     Type
+    31 ;;  argc            2    3[COMRAM] int 
+    32 ;;  argv            3    5[COMRAM] PTR PTR unsigned char 
+    33 ;; Auto vars:     Size  Location     Type
+    34 ;;  i               1   16[COMRAM] unsigned char 
+    35 ;;  i               1   15[COMRAM] unsigned char 
+    36 ;;  i               1   14[COMRAM] unsigned char 
+    37 ;;  i               1   13[COMRAM] unsigned char 
+    38 ;;  i               1   12[COMRAM] unsigned char 
+    39 ;;  i               1   11[COMRAM] unsigned char 
+    40 ;;  i               1   10[COMRAM] unsigned char 
+    41 ;;  i               1    9[COMRAM] unsigned char 
+    42 ;;  Aout_addr       1   17[COMRAM] unsigned char 
+    43 ;; Return value:  Size  Location     Type
+    44 ;;                  2    3[COMRAM] int 
+    45 ;; Registers used:
+    46 ;;		wreg, status,2, status,0, cstack
+    47 ;; Tracked objects:
+    48 ;;		On entry : 0/0
+    49 ;;		On exit  : 0/0
+    50 ;;		Unchanged: 0/0
+    51 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+    52 ;;      Params:         5       0       0       0       0       0       0       0       0
+    53 ;;      Locals:         9       0       0       0       0       0       0       0       0
+    54 ;;      Temps:          1       0       0       0       0       0       0       0       0
+    55 ;;      Totals:        15       0       0       0       0       0       0       0       0
+    56 ;;Total ram usage:       15 bytes
+    57 ;; Hardware stack levels required when called:    2
+    58 ;; This function calls:
+    59 ;;		_IdleI2C
+    60 ;;		_OpenI2C
+    61 ;;		_WriteI2C
+    62 ;; This function is called by:
+    63 ;;		Startup code after reset
+    64 ;; This function uses a non-reentrant model
+    65 ;;
+    66                           
+    67                           	psect	text0
+    68  007DB6                     __ptext0:
+    69                           	opt stack 0
+    70  007DB6                     _main:
+    71                           	opt stack 29
+    72                           
+    73                           ;main.c: 11: unsigned char Aout_addr = 0x70;
+    74                           
+    75                           ;incstack = 0
+    76  007DB6  0E70               	movlw	112
+    77  007DB8  6E12               	movwf	main@Aout_addr,c
+    78                           
+    79                           ;main.c: 14: OpenI2C(0b00001000, 0b10000000);
+    80  007DBA  0E80               	movlw	128
+    81  007DBC  6E01               	movwf	OpenI2C@slew,c
+    82  007DBE  0E08               	movlw	8
+    83  007DC0  EC9A  F03E         	call	_OpenI2C
+    84                           
+    85                           ;main.c: 16: SSPADD = 49;
+    86  007DC4  0E31               	movlw	49
+    87  007DC6  6EC8               	movwf	4040,c	;volatile
+    88  007DC8                     l15:
+    89                           
+    90                           ;main.c: 19: IdleI2C();
+    91  007DC8  EC92  F03E         	call	_IdleI2C	;wreg free
+    92                           
+    93                           ;main.c: 20: SSPCON2bits.SEN=1;while(SSPCON2bits.SEN);
+    94  007DCC  80C5               	bsf	4037,0,c	;volatile
+    95  007DCE                     l16:
+    96  007DCE  B0C5               	btfsc	4037,0,c	;volatile
+    97  007DD0  D7FE               	goto	l16
+    98                           
+    99                           ;main.c: 21: IdleI2C();
+   100  007DD2  EC92  F03E         	call	_IdleI2C	;wreg free
+   101                           
+   102                           ;main.c: 22: WriteI2C(Aout_addr);
+   103  007DD6  5012               	movf	main@Aout_addr,w,c
+   104  007DD8  ECA9  F03E         	call	_WriteI2C
+   105                           
+   106                           ;main.c: 23: IdleI2C();
+   107  007DDC  EC92  F03E         	call	_IdleI2C	;wreg free
+   108                           
+   109                           ;main.c: 24: WriteI2C(0b00000001);
+   110  007DE0  0E01               	movlw	1
+   111  007DE2  ECA9  F03E         	call	_WriteI2C
+   112                           
+   113                           ;main.c: 25: IdleI2C();
+   114  007DE6  EC92  F03E         	call	_IdleI2C	;wreg free
+   115                           
+   116                           ;main.c: 26: SSPCON2bits.PEN=1;while(SSPCON2bits.PEN);
+   117  007DEA  84C5               	bsf	4037,2,c	;volatile
+   118  007DEC                     l19:
+   119  007DEC  B4C5               	btfsc	4037,2,c	;volatile
+   120  007DEE  D7FE               	goto	l19
+   121                           
+   122                           ;main.c: 27: for (unsigned char i=0; i<40; i++) {
+   123  007DF0  0E00               	movlw	0
+   124  007DF2  6E0A               	movwf	main@i,c
+   125  007DF4  D009               	goto	L1
+   126  007DF6                     l781:
+   127                           
+   128                           ;main.c: 28: _delay((unsigned long)((10)*(20000000/4000.0)));
+   129  007DF6  0E41               	movlw	65
+   130  007DF8  6E09               	movwf	??_main& (0+255),c
+   131  007DFA  0EEE               	movlw	238
+   132  007DFC                     u437:
+   133  007DFC  2EE8               	decfsz	wreg,f,c
+   134  007DFE  D7FE               	goto	u437
+   135  007E00  2E09               	decfsz	??_main& (0+255),f,c
+   136  007E02  D7FC               	goto	u437
+   137  007E04  D000               	nop2	
+   138  007E06  2A0A               	incf	main@i,f,c
+   139  007E08                     L1:
+   140  007E08  0E27               	movlw	39
+   141  007E0A  640A               	cpfsgt	main@i,c
+   142  007E0C  D7F4               	goto	l781
+   143                           
+   144                           ;main.c: 29: }
+   145                           ;main.c: 31: IdleI2C();
+   146  007E0E  EC92  F03E         	call	_IdleI2C	;wreg free
+   147                           
+   148                           ;main.c: 32: SSPCON2bits.SEN=1;while(SSPCON2bits.SEN);
+   149  007E12  80C5               	bsf	4037,0,c	;volatile
+   150  007E14                     l24:
+   151  007E14  B0C5               	btfsc	4037,0,c	;volatile
+   152  007E16  D7FE               	goto	l24
+   153                           
+   154                           ;main.c: 33: IdleI2C();
+   155  007E18  EC92  F03E         	call	_IdleI2C	;wreg free
+   156                           
+   157                           ;main.c: 34: WriteI2C(Aout_addr);
+   158  007E1C  5012               	movf	main@Aout_addr,w,c
+   159  007E1E  ECA9  F03E         	call	_WriteI2C
+   160                           
+   161                           ;main.c: 35: IdleI2C();
+   162  007E22  EC92  F03E         	call	_IdleI2C	;wreg free
+   163                           
+   164                           ;main.c: 36: WriteI2C(0b00000010);
+   165  007E26  0E02               	movlw	2
+   166  007E28  ECA9  F03E         	call	_WriteI2C
+   167                           
+   168                           ;main.c: 37: IdleI2C();
+   169  007E2C  EC92  F03E         	call	_IdleI2C	;wreg free
+   170                           
+   171                           ;main.c: 38: SSPCON2bits.PEN=1;while(SSPCON2bits.PEN);
+   172  007E30  84C5               	bsf	4037,2,c	;volatile
+   173  007E32                     l27:
+   174  007E32  B4C5               	btfsc	4037,2,c	;volatile
+   175  007E34  D7FE               	goto	l27
+   176                           
+   177                           ;main.c: 39: for (unsigned char i=0; i<40; i++) {
+   178  007E36  0E00               	movlw	0
+   179  007E38  6E0B               	movwf	main@i_77,c
+   180  007E3A  D009               	goto	L2
+   181  007E3C                     l801:
+   182                           
+   183                           ;main.c: 40: _delay((unsigned long)((10)*(20000000/4000.0)));
+   184  007E3C  0E41               	movlw	65
+   185  007E3E  6E09               	movwf	??_main& (0+255),c
+   186  007E40  0EEE               	movlw	238
+   187  007E42                     u447:
+   188  007E42  2EE8               	decfsz	wreg,f,c
+   189  007E44  D7FE               	goto	u447
+   190  007E46  2E09               	decfsz	??_main& (0+255),f,c
+   191  007E48  D7FC               	goto	u447
+   192  007E4A  D000               	nop2	
+   193  007E4C  2A0B               	incf	main@i_77,f,c
+   194  007E4E                     L2:
+   195  007E4E  0E27               	movlw	39
+   196  007E50  640B               	cpfsgt	main@i_77,c
+   197  007E52  D7F4               	goto	l801
+   198                           
+   199                           ;main.c: 41: }
+   200                           ;main.c: 43: IdleI2C();
+   201  007E54  EC92  F03E         	call	_IdleI2C	;wreg free
+   202                           
+   203                           ;main.c: 44: SSPCON2bits.SEN=1;while(SSPCON2bits.SEN);
+   204  007E58  80C5               	bsf	4037,0,c	;volatile
+   205  007E5A                     l32:
+   206  007E5A  B0C5               	btfsc	4037,0,c	;volatile
+   207  007E5C  D7FE               	goto	l32
+   208                           
+   209                           ;main.c: 45: IdleI2C();
+   210  007E5E  EC92  F03E         	call	_IdleI2C	;wreg free
+   211                           
+   212                           ;main.c: 46: WriteI2C(Aout_addr);
+   213  007E62  5012               	movf	main@Aout_addr,w,c
+   214  007E64  ECA9  F03E         	call	_WriteI2C
+   215                           
+   216                           ;main.c: 47: IdleI2C();
+   217  007E68  EC92  F03E         	call	_IdleI2C	;wreg free
+   218                           
+   219                           ;main.c: 48: WriteI2C(0b00000100);
+   220  007E6C  0E04               	movlw	4
+   221  007E6E  ECA9  F03E         	call	_WriteI2C
+   222                           
+   223                           ;main.c: 49: IdleI2C();
+   224  007E72  EC92  F03E         	call	_IdleI2C	;wreg free
+   225                           
+   226                           ;main.c: 50: SSPCON2bits.PEN=1;while(SSPCON2bits.PEN);
+   227  007E76  84C5               	bsf	4037,2,c	;volatile
+   228  007E78                     l35:
+   229  007E78  B4C5               	btfsc	4037,2,c	;volatile
+   230  007E7A  D7FE               	goto	l35
+   231                           
+   232                           ;main.c: 51: for (unsigned char i=0; i<40; i++) {
+   233  007E7C  0E00               	movlw	0
+   234  007E7E  6E0C               	movwf	main@i_78,c
+   235  007E80  D009               	goto	L3
+   236  007E82                     l821:
+   237                           
+   238                           ;main.c: 52: _delay((unsigned long)((10)*(20000000/4000.0)));
+   239  007E82  0E41               	movlw	65
+   240  007E84  6E09               	movwf	??_main& (0+255),c
+   241  007E86  0EEE               	movlw	238
+   242  007E88                     u457:
+   243  007E88  2EE8               	decfsz	wreg,f,c
+   244  007E8A  D7FE               	goto	u457
+   245  007E8C  2E09               	decfsz	??_main& (0+255),f,c
+   246  007E8E  D7FC               	goto	u457
+   247  007E90  D000               	nop2	
+   248  007E92  2A0C               	incf	main@i_78,f,c
+   249  007E94                     L3:
+   250  007E94  0E27               	movlw	39
+   251  007E96  640C               	cpfsgt	main@i_78,c
+   252  007E98  D7F4               	goto	l821
+   253                           
+   254                           ;main.c: 53: }
+   255                           ;main.c: 55: IdleI2C();
+   256  007E9A  EC92  F03E         	call	_IdleI2C	;wreg free
+   257                           
+   258                           ;main.c: 56: SSPCON2bits.SEN=1;while(SSPCON2bits.SEN);
+   259  007E9E  80C5               	bsf	4037,0,c	;volatile
+   260  007EA0                     l40:
+   261  007EA0  B0C5               	btfsc	4037,0,c	;volatile
+   262  007EA2  D7FE               	goto	l40
+   263                           
+   264                           ;main.c: 57: IdleI2C();
+   265  007EA4  EC92  F03E         	call	_IdleI2C	;wreg free
+   266                           
+   267                           ;main.c: 58: WriteI2C(Aout_addr);
+   268  007EA8  5012               	movf	main@Aout_addr,w,c
+   269  007EAA  ECA9  F03E         	call	_WriteI2C
+   270                           
+   271                           ;main.c: 59: IdleI2C();
+   272  007EAE  EC92  F03E         	call	_IdleI2C	;wreg free
+   273                           
+   274                           ;main.c: 60: WriteI2C(0b00001000);
+   275  007EB2  0E08               	movlw	8
+   276  007EB4  ECA9  F03E         	call	_WriteI2C
+   277                           
+   278                           ;main.c: 61: IdleI2C();
+   279  007EB8  EC92  F03E         	call	_IdleI2C	;wreg free
+   280                           
+   281                           ;main.c: 62: SSPCON2bits.PEN=1;while(SSPCON2bits.PEN);
+   282  007EBC  84C5               	bsf	4037,2,c	;volatile
+   283  007EBE                     l43:
+   284  007EBE  B4C5               	btfsc	4037,2,c	;volatile
+   285  007EC0  D7FE               	goto	l43
+   286                           
+   287                           ;main.c: 63: for (unsigned char i=0; i<40; i++) {
+   288  007EC2  0E00               	movlw	0
+   289  007EC4  6E0D               	movwf	main@i_79,c
+   290  007EC6  D009               	goto	L4
+   291  007EC8                     l841:
+   292                           
+   293                           ;main.c: 64: _delay((unsigned long)((10)*(20000000/4000.0)));
+   294  007EC8  0E41               	movlw	65
+   295  007ECA  6E09               	movwf	??_main& (0+255),c
+   296  007ECC  0EEE               	movlw	238
+   297  007ECE                     u467:
+   298  007ECE  2EE8               	decfsz	wreg,f,c
+   299  007ED0  D7FE               	goto	u467
+   300  007ED2  2E09               	decfsz	??_main& (0+255),f,c
+   301  007ED4  D7FC               	goto	u467
+   302  007ED6  D000               	nop2	
+   303  007ED8  2A0D               	incf	main@i_79,f,c
+   304  007EDA                     L4:
+   305  007EDA  0E27               	movlw	39
+   306  007EDC  640D               	cpfsgt	main@i_79,c
+   307  007EDE  D7F4               	goto	l841
+   308                           
+   309                           ;main.c: 65: }
+   310                           ;main.c: 67: IdleI2C();
+   311  007EE0  EC92  F03E         	call	_IdleI2C	;wreg free
+   312                           
+   313                           ;main.c: 68: SSPCON2bits.SEN=1;while(SSPCON2bits.SEN);
+   314  007EE4  80C5               	bsf	4037,0,c	;volatile
+   315  007EE6                     l48:
+   316  007EE6  B0C5               	btfsc	4037,0,c	;volatile
+   317  007EE8  D7FE               	goto	l48
+   318                           
+   319                           ;main.c: 69: IdleI2C();
+   320  007EEA  EC92  F03E         	call	_IdleI2C	;wreg free
+   321                           
+   322                           ;main.c: 70: WriteI2C(Aout_addr);
+   323  007EEE  5012               	movf	main@Aout_addr,w,c
+   324  007EF0  ECA9  F03E         	call	_WriteI2C
+   325                           
+   326                           ;main.c: 71: IdleI2C();
+   327  007EF4  EC92  F03E         	call	_IdleI2C	;wreg free
+   328                           
+   329                           ;main.c: 72: WriteI2C(0b00010000);
+   330  007EF8  0E10               	movlw	16
+   331  007EFA  ECA9  F03E         	call	_WriteI2C
+   332                           
+   333                           ;main.c: 73: IdleI2C();
+   334  007EFE  EC92  F03E         	call	_IdleI2C	;wreg free
+   335                           
+   336                           ;main.c: 74: SSPCON2bits.PEN=1;while(SSPCON2bits.PEN);
+   337  007F02  84C5               	bsf	4037,2,c	;volatile
+   338  007F04                     l51:
+   339  007F04  B4C5               	btfsc	4037,2,c	;volatile
+   340  007F06  D7FE               	goto	l51
+   341                           
+   342                           ;main.c: 75: for (unsigned char i=0; i<40; i++) {
+   343  007F08  0E00               	movlw	0
+   344  007F0A  6E0E               	movwf	main@i_80,c
+   345  007F0C  D009               	goto	L5
+   346  007F0E                     l861:
+   347                           
+   348                           ;main.c: 76: _delay((unsigned long)((10)*(20000000/4000.0)));
+   349  007F0E  0E41               	movlw	65
+   350  007F10  6E09               	movwf	??_main& (0+255),c
+   351  007F12  0EEE               	movlw	238
+   352  007F14                     u477:
+   353  007F14  2EE8               	decfsz	wreg,f,c
+   354  007F16  D7FE               	goto	u477
+   355  007F18  2E09               	decfsz	??_main& (0+255),f,c
+   356  007F1A  D7FC               	goto	u477
+   357  007F1C  D000               	nop2	
+   358  007F1E  2A0E               	incf	main@i_80,f,c
+   359  007F20                     L5:
+   360  007F20  0E27               	movlw	39
+   361  007F22  640E               	cpfsgt	main@i_80,c
+   362  007F24  D7F4               	goto	l861
+   363                           
+   364                           ;main.c: 77: }
+   365                           ;main.c: 79: IdleI2C();
+   366  007F26  EC92  F03E         	call	_IdleI2C	;wreg free
+   367                           
+   368                           ;main.c: 80: SSPCON2bits.SEN=1;while(SSPCON2bits.SEN);
+   369  007F2A  80C5               	bsf	4037,0,c	;volatile
+   370  007F2C                     l56:
+   371  007F2C  B0C5               	btfsc	4037,0,c	;volatile
+   372  007F2E  D7FE               	goto	l56
+   373                           
+   374                           ;main.c: 81: IdleI2C();
+   375  007F30  EC92  F03E         	call	_IdleI2C	;wreg free
+   376                           
+   377                           ;main.c: 82: WriteI2C(Aout_addr);
+   378  007F34  5012               	movf	main@Aout_addr,w,c
+   379  007F36  ECA9  F03E         	call	_WriteI2C
+   380                           
+   381                           ;main.c: 83: IdleI2C();
+   382  007F3A  EC92  F03E         	call	_IdleI2C	;wreg free
+   383                           
+   384                           ;main.c: 84: WriteI2C(0b00100000);
+   385  007F3E  0E20               	movlw	32
+   386  007F40  ECA9  F03E         	call	_WriteI2C
+   387                           
+   388                           ;main.c: 85: IdleI2C();
+   389  007F44  EC92  F03E         	call	_IdleI2C	;wreg free
+   390                           
+   391                           ;main.c: 86: SSPCON2bits.PEN=1;while(SSPCON2bits.PEN);
+   392  007F48  84C5               	bsf	4037,2,c	;volatile
+   393  007F4A                     l59:
+   394  007F4A  B4C5               	btfsc	4037,2,c	;volatile
+   395  007F4C  D7FE               	goto	l59
+   396                           
+   397                           ;main.c: 87: for (unsigned char i=0; i<40; i++) {
+   398  007F4E  0E00               	movlw	0
+   399  007F50  6E0F               	movwf	main@i_81,c
+   400  007F52  D009               	goto	L6
+   401  007F54                     l881:
+   402                           
+   403                           ;main.c: 88: _delay((unsigned long)((10)*(20000000/4000.0)));
+   404  007F54  0E41               	movlw	65
+   405  007F56  6E09               	movwf	??_main& (0+255),c
+   406  007F58  0EEE               	movlw	238
+   407  007F5A                     u487:
+   408  007F5A  2EE8               	decfsz	wreg,f,c
+   409  007F5C  D7FE               	goto	u487
+   410  007F5E  2E09               	decfsz	??_main& (0+255),f,c
+   411  007F60  D7FC               	goto	u487
+   412  007F62  D000               	nop2	
+   413  007F64  2A0F               	incf	main@i_81,f,c
+   414  007F66                     L6:
+   415  007F66  0E27               	movlw	39
+   416  007F68  640F               	cpfsgt	main@i_81,c
+   417  007F6A  D7F4               	goto	l881
+   418                           
+   419                           ;main.c: 89: }
+   420                           ;main.c: 91: IdleI2C();
+   421  007F6C  EC92  F03E         	call	_IdleI2C	;wreg free
+   422                           
+   423                           ;main.c: 92: SSPCON2bits.SEN=1;while(SSPCON2bits.SEN);
+   424  007F70  80C5               	bsf	4037,0,c	;volatile
+   425  007F72                     l64:
+   426  007F72  B0C5               	btfsc	4037,0,c	;volatile
+   427  007F74  D7FE               	goto	l64
+   428                           
+   429                           ;main.c: 93: IdleI2C();
+   430  007F76  EC92  F03E         	call	_IdleI2C	;wreg free
+   431                           
+   432                           ;main.c: 94: WriteI2C(Aout_addr);
+   433  007F7A  5012               	movf	main@Aout_addr,w,c
+   434  007F7C  ECA9  F03E         	call	_WriteI2C
+   435                           
+   436                           ;main.c: 95: IdleI2C();
+   437  007F80  EC92  F03E         	call	_IdleI2C	;wreg free
+   438                           
+   439                           ;main.c: 96: WriteI2C(0b01000000);
+   440  007F84  0E40               	movlw	64
+   441  007F86  ECA9  F03E         	call	_WriteI2C
+   442                           
+   443                           ;main.c: 97: IdleI2C();
+   444  007F8A  EC92  F03E         	call	_IdleI2C	;wreg free
+   445                           
+   446                           ;main.c: 98: SSPCON2bits.PEN=1;while(SSPCON2bits.PEN);
+   447  007F8E  84C5               	bsf	4037,2,c	;volatile
+   448  007F90                     l67:
+   449  007F90  B4C5               	btfsc	4037,2,c	;volatile
+   450  007F92  D7FE               	goto	l67
+   451                           
+   452                           ;main.c: 99: for (unsigned char i=0; i<40; i++) {
+   453  007F94  0E00               	movlw	0
+   454  007F96  6E10               	movwf	main@i_82,c
+   455  007F98  D009               	goto	L7
+   456  007F9A                     l901:
+   457                           
+   458                           ;main.c: 100: _delay((unsigned long)((10)*(20000000/4000.0)));
+   459  007F9A  0E41               	movlw	65
+   460  007F9C  6E09               	movwf	??_main& (0+255),c
+   461  007F9E  0EEE               	movlw	238
+   462  007FA0                     u497:
+   463  007FA0  2EE8               	decfsz	wreg,f,c
+   464  007FA2  D7FE               	goto	u497
+   465  007FA4  2E09               	decfsz	??_main& (0+255),f,c
+   466  007FA6  D7FC               	goto	u497
+   467  007FA8  D000               	nop2	
+   468  007FAA  2A10               	incf	main@i_82,f,c
+   469  007FAC                     L7:
+   470  007FAC  0E27               	movlw	39
+   471  007FAE  6410               	cpfsgt	main@i_82,c
+   472  007FB0  D7F4               	goto	l901
+   473                           
+   474                           ;main.c: 101: }
+   475                           ;main.c: 103: IdleI2C();
+   476  007FB2  EC92  F03E         	call	_IdleI2C	;wreg free
+   477                           
+   478                           ;main.c: 104: SSPCON2bits.SEN=1;while(SSPCON2bits.SEN);
+   479  007FB6  80C5               	bsf	4037,0,c	;volatile
+   480  007FB8                     l72:
+   481  007FB8  B0C5               	btfsc	4037,0,c	;volatile
+   482  007FBA  D7FE               	goto	l72
+   483                           
+   484                           ;main.c: 105: IdleI2C();
+   485  007FBC  EC92  F03E         	call	_IdleI2C	;wreg free
+   486                           
+   487                           ;main.c: 106: WriteI2C(Aout_addr);
+   488  007FC0  5012               	movf	main@Aout_addr,w,c
+   489  007FC2  ECA9  F03E         	call	_WriteI2C
+   490                           
+   491                           ;main.c: 107: IdleI2C();
+   492  007FC6  EC92  F03E         	call	_IdleI2C	;wreg free
+   493                           
+   494                           ;main.c: 108: WriteI2C(0b10000000);
+   495  007FCA  0E80               	movlw	128
+   496  007FCC  ECA9  F03E         	call	_WriteI2C
+   497                           
+   498                           ;main.c: 109: IdleI2C();
+   499  007FD0  EC92  F03E         	call	_IdleI2C	;wreg free
+   500                           
+   501                           ;main.c: 110: SSPCON2bits.PEN=1;while(SSPCON2bits.PEN);
+   502  007FD4  84C5               	bsf	4037,2,c	;volatile
+   503  007FD6                     l75:
+   504  007FD6  B4C5               	btfsc	4037,2,c	;volatile
+   505  007FD8  D7FE               	goto	l75
+   506                           
+   507                           ;main.c: 111: for (unsigned char i=0; i<40; i++) {
+   508  007FDA  0E00               	movlw	0
+   509  007FDC  6E11               	movwf	main@i_83,c
+   510  007FDE  0E27               	movlw	39
+   511  007FE0  6411               	cpfsgt	main@i_83,c
+   512  007FE2  D001               	goto	l921
+   513  007FE4  D6F1               	goto	l15
+   514  007FE6                     l921:
+   515                           
+   516                           ;main.c: 112: _delay((unsigned long)((10)*(20000000/4000.0)));
+   517  007FE6  0E41               	movlw	65
+   518  007FE8  6E09               	movwf	??_main& (0+255),c
+   519  007FEA  0EEE               	movlw	238
+   520  007FEC                     u507:
+   521  007FEC  2EE8               	decfsz	wreg,f,c
+   522  007FEE  D7FE               	goto	u507
+   523  007FF0  2E09               	decfsz	??_main& (0+255),f,c
+   524  007FF2  D7FC               	goto	u507
+   525  007FF4  D000               	nop2	
+   526  007FF6  2A11               	incf	main@i_83,f,c
+   527  007FF8  0E27               	movlw	39
+   528  007FFA  6411               	cpfsgt	main@i_83,c
+   529  007FFC  D7F4               	goto	l921
+   530  007FFE  D6E4               	goto	l15
+   531  008000                     __end_of_main:
+   532                           	opt stack 0
+   533                           wreg	equ	0xFE8
+   534                           
+   535                           	psect	cinit
+   536  007D1E                     __pcinit:
+   537                           	opt stack 0
+   538  007D1E                     start_initialization:
+   539                           	opt stack 0
+   540  007D1E                     __initialization:
+   541                           	opt stack 0
+   542  007D1E                     end_of_initialization:
+   543                           	opt stack 0
+   544  007D1E                     __end_of__initialization:
+   545                           	opt stack 0
+   546  007D1E  0100               	movlb	0
+   547  007D20  EFDB  F03E         	goto	_main	;jump to C main() function
+   548                           wreg	equ	0xFE8
+   549                           
+   550                           	psect	cstackCOMRAM
+   551  000001                     __pcstackCOMRAM:
+   552                           	opt stack 0
+   553  000001                     ??_IdleI2C:
+   554  000001                     OpenI2C@slew:
+   555                           	opt stack 0
+   556                           
+   557                           ; 1 bytes @ 0x0
+   558  000001                     	ds	1
+   559  000002                     ??_WriteI2C:
+   560  000002                     OpenI2C@sync_mode:
+   561                           	opt stack 0
+   562                           
+   563                           ; 1 bytes @ 0x1
+   564  000002                     	ds	1
+   565  000003                     WriteI2C@data_out:
+   566                           	opt stack 0
+   567                           
+   568                           ; 1 bytes @ 0x2
+   569  000003                     	ds	1
+   570  000004                     
+   571                           ; 2 bytes @ 0x3
+   572  000004                     	ds	2
+   573  000006                     
+   574                           ; 3 bytes @ 0x5
+   575  000006                     	ds	3
+   576  000009                     ??_main:
+   577                           
+   578                           ; 0 bytes @ 0x8
+   579  000009                     	ds	1
+   580  00000A                     main@i:
+   581                           	opt stack 0
+   582                           
+   583                           ; 1 bytes @ 0x9
+   584  00000A                     	ds	1
+   585  00000B                     main@i_77:
+   586                           	opt stack 0
+   587                           
+   588                           ; 1 bytes @ 0xA
+   589  00000B                     	ds	1
+   590  00000C                     main@i_78:
+   591                           	opt stack 0
+   592                           
+   593                           ; 1 bytes @ 0xB
+   594  00000C                     	ds	1
+   595  00000D                     main@i_79:
+   596                           	opt stack 0
+   597                           
+   598                           ; 1 bytes @ 0xC
+   599  00000D                     	ds	1
+   600  00000E                     main@i_80:
+   601                           	opt stack 0
+   602                           
+   603                           ; 1 bytes @ 0xD
+   604  00000E                     	ds	1
+   605  00000F                     main@i_81:
+   606                           	opt stack 0
+   607                           
+   608                           ; 1 bytes @ 0xE
+   609  00000F                     	ds	1
+   610  000010                     main@i_82:
+   611                           	opt stack 0
+   612                           
+   613                           ; 1 bytes @ 0xF
+   614  000010                     	ds	1
+   615  000011                     main@i_83:
+   616                           	opt stack 0
+   617                           
+   618                           ; 1 bytes @ 0x10
+   619  000011                     	ds	1
+   620  000012                     main@Aout_addr:
+   621                           	opt stack 0
+   622                           
+   623                           ; 1 bytes @ 0x11
+   624  000012                     	ds	1
+   625                           wreg	equ	0xFE8
+   626                           
+   627 ;; *************** function _WriteI2C *****************
+   628 ;; Defined at:
+   629 ;;		line 12 in file "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\pic18\plib\i2c\i2c_writ.c"
+   630 ;; Parameters:    Size  Location     Type
+   631 ;;  data_out        1    wreg     unsigned char 
+   632 ;; Auto vars:     Size  Location     Type
+   633 ;;  data_out        1    2[COMRAM] unsigned char 
+   634 ;; Return value:  Size  Location     Type
+   635 ;;                  1    wreg      char 
+   636 ;; Registers used:
+   637 ;;		wreg, status,2, status,0, cstack
+   638 ;; Tracked objects:
+   639 ;;		On entry : 0/0
+   640 ;;		On exit  : 0/0
+   641 ;;		Unchanged: 0/0
+   642 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   643 ;;      Params:         0       0       0       0       0       0       0       0       0
+   644 ;;      Locals:         1       0       0       0       0       0       0       0       0
+   645 ;;      Temps:          1       0       0       0       0       0       0       0       0
+   646 ;;      Totals:         2       0       0       0       0       0       0       0       0
+   647 ;;Total ram usage:        2 bytes
+   648 ;; Hardware stack levels used:    1
+   649 ;; Hardware stack levels required when called:    1
+   650 ;; This function calls:
+   651 ;;		_IdleI2C
+   652 ;; This function is called by:
+   653 ;;		_main
+   654 ;; This function uses a non-reentrant model
+   655 ;;
+   656                           
+   657                           	psect	text1
+   658  007D52                     __ptext1:
+   659                           	opt stack 0
+   660  007D52                     _WriteI2C:
+   661                           	opt stack 29
+   662                           
+   663                           ;incstack = 0
+   664                           ;WriteI2C@data_out stored from wreg
+   665  007D52  6E03               	movwf	WriteI2C@data_out,c
+   666  007D54  C003  FFC9         	movff	WriteI2C@data_out,4041	;volatile
+   667  007D58  BEC6               	btfsc	4038,7,c	;volatile
+   668  007D5A  D02C               	goto	l121
+   669                           
+   670                           ;	Return value of _WriteI2C is never used
+   671  007D5C  CFC6 F002          	movff	4038,??_WriteI2C	;volatile
+   672  007D60  0E0F               	movlw	15
+   673  007D62  1602               	andwf	??_WriteI2C,f,c
+   674  007D64  5002               	movf	??_WriteI2C,w,c
+   675  007D66  0A08               	xorlw	8
+   676  007D68  B4D8               	btfsc	status,2,c
+   677  007D6A  D00F               	goto	l751
+   678  007D6C  CFC6 F002          	movff	4038,??_WriteI2C	;volatile
+   679  007D70  0E0F               	movlw	15
+   680  007D72  1602               	andwf	??_WriteI2C,f,c
+   681  007D74  5002               	movf	??_WriteI2C,w,c
+   682  007D76  0A0B               	xorlw	11
+   683  007D78  B4D8               	btfsc	status,2,c
+   684  007D7A  D007               	goto	l751
+   685  007D7C  88C6               	bsf	4038,4,c	;volatile
+   686  007D7E                     l124:
+   687  007D7E  A69E               	btfss	3998,3,c	;volatile
+   688  007D80  D7FE               	goto	l124
+   689  007D82  B4C7               	btfsc	4039,2,c	;volatile
+   690  007D84  D017               	goto	l121
+   691  007D86  50C7               	movf	4039,w,c	;volatile
+   692  007D88  D015               	goto	l121
+   693  007D8A                     l751:
+   694  007D8A  CFC6 F002          	movff	4038,??_WriteI2C	;volatile
+   695  007D8E  0E0F               	movlw	15
+   696  007D90  1602               	andwf	??_WriteI2C,f,c
+   697  007D92  5002               	movf	??_WriteI2C,w,c
+   698  007D94  0A08               	xorlw	8
+   699  007D96  B4D8               	btfsc	status,2,c
+   700  007D98  D008               	goto	l133
+   701  007D9A  CFC6 F002          	movff	4038,??_WriteI2C	;volatile
+   702  007D9E  0E0F               	movlw	15
+   703  007DA0  1602               	andwf	??_WriteI2C,f,c
+   704  007DA2  5002               	movf	??_WriteI2C,w,c
+   705  007DA4  0A0B               	xorlw	11
+   706  007DA6  A4D8               	btfss	status,2,c
+   707  007DA8  D005               	goto	l121
+   708  007DAA                     l133:
+   709  007DAA  B0C7               	btfsc	4039,0,c	;volatile
+   710  007DAC  D7FE               	goto	l133
+   711  007DAE  EC92  F03E         	call	_IdleI2C	;wreg free
+   712  007DB2  50C5               	movf	4037,w,c	;volatile
+   713  007DB4                     l121:
+   714  007DB4  0012               	return	
+   715  007DB6                     __end_of_WriteI2C:
+   716                           	opt stack 0
+   717                           wreg	equ	0xFE8
+   718                           status	equ	0xFD8
+   719                           
+   720 ;; *************** function _IdleI2C *****************
+   721 ;; Defined at:
+   722 ;;		line 24 in file "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\pic18\plib\i2c\i2c_idle.c"
+   723 ;; Parameters:    Size  Location     Type
+   724 ;;		None
+   725 ;; Auto vars:     Size  Location     Type
+   726 ;;		None
+   727 ;; Return value:  Size  Location     Type
+   728 ;;		None               void
+   729 ;; Registers used:
+   730 ;;		wreg, status,2, status,0
+   731 ;; Tracked objects:
+   732 ;;		On entry : 0/0
+   733 ;;		On exit  : 0/0
+   734 ;;		Unchanged: 0/0
+   735 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   736 ;;      Params:         0       0       0       0       0       0       0       0       0
+   737 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   738 ;;      Temps:          1       0       0       0       0       0       0       0       0
+   739 ;;      Totals:         1       0       0       0       0       0       0       0       0
+   740 ;;Total ram usage:        1 bytes
+   741 ;; Hardware stack levels used:    1
+   742 ;; This function calls:
+   743 ;;		Nothing
+   744 ;; This function is called by:
+   745 ;;		_main
+   746 ;;		_WriteI2C
+   747 ;; This function uses a non-reentrant model
+   748 ;;
+   749                           
+   750                           	psect	text2
+   751  007D24                     __ptext2:
+   752                           	opt stack 0
+   753  007D24                     _IdleI2C:
+   754                           	opt stack 29
+   755  007D24                     l715:
+   756  007D24  CFC5 F001          	movff	4037,??_IdleI2C	;volatile
+   757  007D28  0E1F               	movlw	31
+   758  007D2A  1601               	andwf	??_IdleI2C,f,c
+   759  007D2C  B4D8               	btfsc	status,2,c
+   760  007D2E  B4C7               	btfsc	4039,2,c	;volatile
+   761  007D30  D7F9               	goto	l715
+   762  007D32  0012               	return	
+   763  007D34                     __end_of_IdleI2C:
+   764                           	opt stack 0
+   765                           wreg	equ	0xFE8
+   766                           status	equ	0xFD8
+   767                           
+   768 ;; *************** function _OpenI2C *****************
+   769 ;; Defined at:
+   770 ;;		line 14 in file "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\pic18\plib\i2c\i2c_open.c"
+   771 ;; Parameters:    Size  Location     Type
+   772 ;;  sync_mode       1    wreg     unsigned char 
+   773 ;;  slew            1    0[COMRAM] unsigned char 
+   774 ;; Auto vars:     Size  Location     Type
+   775 ;;  sync_mode       1    1[COMRAM] unsigned char 
+   776 ;; Return value:  Size  Location     Type
+   777 ;;		None               void
+   778 ;; Registers used:
+   779 ;;		wreg, status,2, status,0
+   780 ;; Tracked objects:
+   781 ;;		On entry : 0/0
+   782 ;;		On exit  : 0/0
+   783 ;;		Unchanged: 0/0
+   784 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   785 ;;      Params:         1       0       0       0       0       0       0       0       0
+   786 ;;      Locals:         1       0       0       0       0       0       0       0       0
+   787 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   788 ;;      Totals:         2       0       0       0       0       0       0       0       0
+   789 ;;Total ram usage:        2 bytes
+   790 ;; Hardware stack levels used:    1
+   791 ;; This function calls:
+   792 ;;		Nothing
+   793 ;; This function is called by:
+   794 ;;		_main
+   795 ;; This function uses a non-reentrant model
+   796 ;;
+   797                           
+   798                           	psect	text3
+   799  007D34                     __ptext3:
+   800                           	opt stack 0
+   801  007D34                     _OpenI2C:
+   802                           	opt stack 30
+   803                           
+   804                           ;incstack = 0
+   805                           ;OpenI2C@sync_mode stored from wreg
+   806  007D34  6E02               	movwf	OpenI2C@sync_mode,c
+   807  007D36  0E3F               	movlw	63
+   808  007D38  16C7               	andwf	4039,f,c	;volatile
+   809  007D3A  0E00               	movlw	0
+   810  007D3C  6EC6               	movwf	4038,c	;volatile
+   811  007D3E  0E00               	movlw	0
+   812  007D40  6EC5               	movwf	4037,c	;volatile
+   813  007D42  5002               	movf	OpenI2C@sync_mode,w,c
+   814  007D44  12C6               	iorwf	4038,f,c	;volatile
+   815  007D46  5001               	movf	OpenI2C@slew,w,c
+   816  007D48  12C7               	iorwf	4039,f,c	;volatile
+   817  007D4A  8293               	bsf	3987,1,c	;volatile
+   818  007D4C  8093               	bsf	3987,0,c	;volatile
+   819  007D4E  8AC6               	bsf	4038,5,c	;volatile
+   820  007D50  0012               	return	
+   821  007D52                     __end_of_OpenI2C:
+   822                           	opt stack 0
+   823  0000                     wreg	equ	0xFE8
+   824                           status	equ	0xFD8
+   825                           wreg	equ	0xFE8
+   826                           status	equ	0xFD8
+   827                           
+   828                           	psect	rparam
+   829  0000                     wreg	equ	0xFE8
+   830                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95     18      18
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    _main->_WriteI2C
+    _WriteI2C->_IdleI2C
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                15    10      5     439
+                                              3 COMRAM    15    10      5
+                            _IdleI2C
+                            _OpenI2C
+                           _WriteI2C
+ ---------------------------------------------------------------------------------
+ (1) _WriteI2C                                             2     2      0      15
+                                              1 COMRAM     2     2      0
+                            _IdleI2C
+ ---------------------------------------------------------------------------------
+ (2) _IdleI2C                                              1     1      0       0
+                                              0 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ (1) _OpenI2C                                              2     1      1      64
+                                              0 COMRAM     2     1      1
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _IdleI2C
+   _OpenI2C
+   _WriteI2C
+     _IdleI2C
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMRAM           5F      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMRAM              5F     12      12       1       18.9%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       0       3        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+ABS                  0      0       0      20        0.0%
+BIGRAM             7FF      0       0      21        0.0%
+BITSFR               0      0       0      40        0.0%
+SFR                  0      0       0      40        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V1.33 build 59893 
+Symbol Table                                                                                   Sun Feb 07 21:40:29 2016
+
+            _SSPSTATbits 000FC7                       l15 7DC8                       l40 7EA0  
+                     l32 7E5A                       l24 7E14                       l16 7DCE  
+                     l51 7F04                       l43 7EBE                       l35 7E78  
+                     l27 7E32                       l19 7DEC                       l72 7FB8  
+                     l64 7F72                       l56 7F2C                       l48 7EE6  
+                     l75 7FD6                       l67 7F90                       l59 7F4A  
+                    l121 7DB4                      l124 7D7E                      l133 7DAA  
+                    l801 7E3C                      l715 7D24                      l901 7F9A  
+                    l821 7E82                      l751 7D8A                      l921 7FE6  
+                    l841 7EC8                      l861 7F0E                      l781 7DF6  
+                    l881 7F54                      u507 7FEC                      u437 7DFC  
+                    u447 7E42                      u457 7E88                      u467 7ECE  
+                    u477 7F14                      u487 7F5A                      u497 7FA0  
+           __CFG_BOR$OFF 000000                      wreg 000FE8            main@Aout_addr 0012  
+           __CFG_LVP$OFF 000000             __CFG_WDT$OFF 000000             __CFG_PWRT$ON 000000  
+                   _main 7DB6                     start 0000          __end_of_IdleI2C 7D34  
+          __CFG_MCLRE$ON 000000          __end_of_OpenI2C 7D52            __CFG_PLLDIV$5 000000  
+                  ?_main 0004            __CFG_USBDIV$2 000000                    main@i 000A  
+                  status 000FD8          __initialization 7D1E             __end_of_main 8000  
+                 ??_main 0009            __activetblptr 000000         __end_of_WriteI2C 7DB6  
+            OpenI2C@slew 0001                ??_IdleI2C 0001                   _SSPADD 000FC8  
+                 _SSPBUF 000FC9           __CFG_VREGEN$ON 000000                ??_OpenI2C 0002  
+             __accesstop 0060  __end_of__initialization 7D1E          __CFG_PBADEN$OFF 000000  
+         __pcstackCOMRAM 0001                ?_WriteI2C 0001                  _SSPCON1 000FC6  
+                _SSPCON2 000FC5                  _SSPSTAT 000FC7                  _IdleI2C 7D24  
+                _OpenI2C 7D34                  __Hparam 0000                  __Lparam 0000  
+                __pcinit 7D1E               ??_WriteI2C 0002                  __ramtop 0800  
+                __ptext0 7DB6                  __ptext1 7D52                  __ptext2 7D24  
+                __ptext3 7D34     end_of_initialization 7D1E                _TRISBbits 000F93  
+    start_initialization 7D1E         WriteI2C@data_out 0003        __size_of_WriteI2C 0064  
+               ?_IdleI2C 0001                 ?_OpenI2C 0001                 _PIR1bits 000F9E  
+       OpenI2C@sync_mode 0002         __size_of_IdleI2C 0010                 __Hrparam 0000  
+       __size_of_OpenI2C 001E                 __Lrparam 0000                 _WriteI2C 7D52  
+          __size_of_main 024A                 main@i_80 000E                 main@i_81 000F  
+               main@i_82 0010                 main@i_83 0011                 main@i_77 000B  
+               main@i_78 000C                 main@i_79 000D                 main@argc 0004  
+               main@argv 0006    __CFG_CPUDIV$OSC1_PLL2 000000              _SSPCON1bits 000FC6  
+            _SSPCON2bits 000FC5       __CFG_FOSC$HSPLL_HS 000000  

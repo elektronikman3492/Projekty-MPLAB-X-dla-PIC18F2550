@@ -1,0 +1,7 @@
+_IdleI2C: CODE, 32502 0 16
+_main: CODE, 32588 0 80
+__initialization: CODE, 32496 0 0
+_ReadI2C: CODE, 32548 0 40
+_WriteI2C: CODE, 32668 0 100
+_OpenI2C: CODE, 32518 0 30
+Total: 266

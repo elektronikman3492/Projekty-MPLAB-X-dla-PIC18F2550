@@ -1,0 +1,10 @@
+Znaki specjalne:
+LcdData();  znak
+  0x00       °
+  0x01       ¹
+  0x02       ê
+  0x03       æ 
+  0x04       ³
+  0x05       ñ
+  0x06       ó
+  0x07       œ      

@@ -1,0 +1,5 @@
+_clk: CODE, 31892 0 6
+_shift_data: CODE, 31904 0 274
+_main: CODE, 32178 0 590
+__initialization: CODE, 31898 0 0
+Total: 870
